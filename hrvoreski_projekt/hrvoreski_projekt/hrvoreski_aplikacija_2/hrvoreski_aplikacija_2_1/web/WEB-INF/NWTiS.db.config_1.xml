@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>NWTIS konfiguracija</comment>
+    <entry key="server.database">jdbc:mysql://localhost/</entry>
+    <entry key="admin.username">nwtis_g2</entry>
+    <entry key="admin.password">g2_nwtis</entry>
+    <entry key="admin.database">nwtis_hrvoreski_bp_2</entry>
+    <entry key="user.username">nwtis_g2</entry>
+    <entry key="user.password">g2_nwtis</entry>
+    <entry key="user.database">nwtis_hrvoreski_bp_2</entry>
+    <entry key="driver.database.odbc">sun.jdbc.odbc.JdbcOdbcDriver</entry>
+    <entry key="driver.database.mysql">com.mysql.jdbc.Driver</entry>
+    <entry key="driver.database.derby">org.apache.derby.jdbc.ClientDriver</entry>
+    <entry key="driver.database.postgresql">org.postgresql.Driver</entry>
+
+    <entry key="dirIspravnePoruke">NWTiS</entry>
+    <entry key="dirNeispravnePoruke">NeNWTiS</entry>
+    <entry key="dirOstalePoruke">OstalePoruke</entry>
+    <entry key="dirGalerijeAplikacije">Galerija</entry>
+  
+    <entry key="predmetMailaStatistike">Statistika maila</entry>
+    <entry key="statistikaMail">admin@nwtis.nastava.foi.hr</entry>
+    <entry key="trazeniPredmet">NWTiS</entry>
+    <entry key="dirStatistike">Trash</entry>
+ 
+    
+    <entry key="adresaPosluzitelja">localhost</entry>
+    <entry key="poslanePoruke">Sent</entry>
+    <entry key="emailPort">143</entry>
+    <entry key="korisnickoIme">admin@nwtis.nastava.foi.hr</entry>
+    <entry key="lozinka">123456</entry>
+    <entry key="trazeniPredmet">NWTiS</entry>
+    <entry key="primateljEmailPoruke">admin@nwtis.nastava.foi.hr</entry>
+    <entry key="brojUcitanihPoruka">10</entry>
+    <entry key="interval">120</entry>
+    <entry key="portfelji">4</entry>
+    <entry key="port">3030</entry>
+    
+</properties>

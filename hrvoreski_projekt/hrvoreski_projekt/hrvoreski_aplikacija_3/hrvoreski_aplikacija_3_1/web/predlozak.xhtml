@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />      
+    </h:head>
+    <h:body>
+        <div id="top">
+            <ui:insert name="top">Aplikacija 3</ui:insert>
+        </div>
+        <div>
+            <div id="left" style="min-height: 30em">
+                <h:link value="Početna" outcome="index"/><br/>
+                <h:link value="Pregled Mail JMS" outcome="pregledMailPoruka"/><br/>
+                <h:link value="Pregled Zip JMS" outcome="pregledAdresaPoruka"/><br/>
+                <h:link value="Upravljački dio" outcome="upravljanjeKomandama"/><br/>
+                <h:link value="Aktivni korisnici" outcome="pregledAktivnihKorisnika"/><br/>
+                <h:link value="JavaDoc War" outcome="/javadoc/war/index.html"/><br/>
+                <h:link value="JavaDoc EJB" outcome="/javadoc/ejb/index.html"/><br/>
+                <ui:insert name="left">
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content" style="min-height: 30em">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+        <div id="bottom">
+            <ui:insert name="bottom">Hrvoje Oreški &copy; 2014</ui:insert>
+        </div>
+    </h:body>
+</html>
+
+

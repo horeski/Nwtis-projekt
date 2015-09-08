@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application version="7" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd">
+  <display-name>hrvoreski_aplikacija_2</display-name>
+  <module>
+    <ejb>hrvoreski_aplikacija_2_2.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>hrvoreski_aplikacija_2_1.war</web-uri>
+      <context-root>/hrvoreski_aplikacija_2_1</context-root>
+    </web>
+  </module>
+</application>

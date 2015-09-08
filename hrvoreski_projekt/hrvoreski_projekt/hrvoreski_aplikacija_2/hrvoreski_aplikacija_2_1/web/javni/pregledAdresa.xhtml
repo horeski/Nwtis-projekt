@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view locale="#{lokalizacija.odabraniLocale}">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <h:outputStylesheet name="./css/default.css" />
+            <h:outputStylesheet name="./css/osnovna.css" />
+            <h:outputStylesheet name="./css/cssLayout.css" />
+            <title>#{m.pregledAktivnihAdresa_naslov}</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="../predlozak.xhtml">
+
+                <ui:define name="naslov">
+                    #{m.pregledAktivnihAdresa_naslov}
+                </ui:define>
+
+                <ui:define name="top">
+                    #{m.pregledAktivnihAdresa_adrese}
+                </ui:define>
+
+                <ui:define name="left">
+
+                </ui:define>
+
+                <ui:define name="content">
+                    <h:form id="forma">
+                        <p:dataTable 
+                            var="element" 
+                            value="#{pregledAdresa.adrese}"
+                            lazy="false" 
+                            filteredValue="#{pregledAdresa.filteredValue}"
+                            paginator="true" 
+                            rows="5" 
+                            paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" 
+                            rowsPerPageTemplate="10,20,50,100"
+                            selection="#{pregledAdresa.odabranaAdresa}"
+                            selectionMode="single"
+                            rowKey="#{element.idadresa}"
+                            id="adrese"> 
+
+                            <p:ajax event="rowSelect" listener="#{pregledAdresa.dajVazeceMeteoPodatke()}" update=":forma:meteo" oncomplete="meteo.show()"/>
+                            <f:facet name="header">
+                                #{m.pregledAktivnihAdresa_naslov}
+                            </f:facet>
+
+                            <p:column sortBy="#{element.idadresa}" filterBy="#{element.idadresa}" filterMatchMode="contains" headerText="ID" >                 
+                                <h:outputText value="#{element.idadresa}" /> 
+                            </p:column>
+                            <p:column sortBy="#{element.adresa}" filterBy="#{element.adresa}" filterMatchMode="contains" headerText="#{m.pregledAktivnihAdresa_adrese}" sortFunction="#{pregledAdresa.compare}" filterStyle="width: 350px;">                 
+                                <h:outputText value="#{element.adresa}" /> 
+                            </p:column>
+                            <p:column sortBy="#{element.geoloc.latitude}" filterBy="#{element.geoloc.latitude}" filterMatchMode="contains" headerText="Latitude">                 
+                                <h:outputText value="#{element.geoloc.latitude}" /> 
+                            </p:column>
+                            <p:column sortBy="#{element.geoloc.longitude}" filterBy="#{element.geoloc.longitude}" filterMatchMode="contains" headerText="Longitude">                 
+                                <h:outputText value="#{element.geoloc.longitude}" /> 
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:dialog id="meteo" header="#{m.pregledAdresaZadnji}" widgetVar="meteo" resizable="false"  width="300"> 
+                            <h:panelGrid id="display" columns="2" cellpadding="4">  
+                                <h:outputText value="#{m.pregledAdresaZadnjiA}" />  
+                                <h:outputText value="#{pregledAdresa.odabranaAdresa.adresa}" />  
+
+                                <h:outputText value="#{m.pregledAdresaZadnjiT}" />  
+                                <h:outputText value="#{pregledAdresa.meteoPodaci.temperature}" />  
+
+                                <h:outputText value="#{m.pregledAdresaZadnjiV}" />  
+                                <h:outputText value="#{pregledAdresa.meteoPodaci.humidity}" />  
+
+                                <h:outputText value="#{m.pregledAdresaZadnjiVJ}" />  
+                                <h:outputText value="#{pregledAdresa.meteoPodaci.windSpeed}" />
+
+                                <h:outputText value="#{m.pregledAdresaZadnjiK}" />  
+                                <h:outputText value="#{pregledAdresa.meteoPodaci.rainRate}" />
+
+                                <h:outputText value="#{m.pregledAdresaZadnjiS}" />  
+                                <h:outputText value="#{pregledAdresa.meteoPodaci.snowRate}" />  
+                            </h:panelGrid>  
+                        </p:dialog>
+                    </h:form>
+                </ui:define>
+
+                <ui:define name="bottom">
+                    <ui:insert name="bottom">Hrvoje Oreški &copy; 2014.</ui:insert>
+                </ui:define>
+
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

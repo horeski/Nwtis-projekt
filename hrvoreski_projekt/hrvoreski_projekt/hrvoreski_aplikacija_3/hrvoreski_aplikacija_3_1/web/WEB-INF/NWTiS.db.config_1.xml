@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>NWTIS konfiguracija</comment>
+
+    <entry key="adresaPosluzitelja">localhost</entry>
+    <entry key="poslanePoruke">PoslanePoruke</entry>
+    <entry key="trazeniPredmet">NWTiS</entry>
+    
+    <entry key="emailPort">143</entry>
+    <entry key="korisnickoIme">servis@nwtis.nastava.foi.hr</entry>
+    <entry key="lozinkaKorisnika">123456</entry>
+    <entry key="primateljEmailPoruke">hrvoreski@nwtis.nastava.foi.hr</entry>
+
+    <entry key="datotekaAdrese">D:\serijaliziraneAdrese.bin</entry>
+    <entry key="datotekaEmail">D:\serijaliziraneEmail.bin</entry>
+    <entry key="port">3030</entry>
+        
+</properties>

@@ -1,0 +1,11 @@
+org.foi.nwtis.hrvoreski.filteri
+org.foi.nwtis.hrvoreski.helperi
+org.foi.nwtis.hrvoreski.konfiguracije
+org.foi.nwtis.hrvoreski.kontrole
+org.foi.nwtis.hrvoreski.rest.klijenti
+org.foi.nwtis.hrvoreski.web.app
+org.foi.nwtis.hrvoreski.web.kontroleri
+org.foi.nwtis.hrvoreski.web.podaci
+org.foi.nwtis.hrvoreski.web.slusaci
+org.foi.nwtis.hrvoreski.web.zrna
+org.foi.nwtis.hrvoreski.ws.serveri

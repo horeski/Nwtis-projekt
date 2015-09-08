@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view locale="#{lokalizacija.odabraniLocale}">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <h:outputStylesheet name="./css/default.css" />
+            <h:outputStylesheet name="./css/osnovna.css" />
+            <h:outputStylesheet name="./css/cssLayout.css" />
+            <title>#{m.login_prijava}</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="../predlozak.xhtml">
+
+                <ui:define name="naslov">
+                    #{m.login_prijava}
+                </ui:define>
+
+                <ui:define name="top">
+                    #{m.login_prijava}
+                </ui:define>
+
+                <ui:define name="left">
+                </ui:define>
+
+                <ui:define name="content">
+                    <h:form>
+                        <h:outputText value="#{m.login_username}"/><br/>
+                        <h:inputText value="#{login.korIme}" style="width: 200px"/><br/>
+                        <h:outputText value="#{m.login_password}" /><br/>
+                        <h:inputSecret value="#{login.lozinka}" style="width: 150px"/><br/>
+
+                        <h:commandButton action="#{login.login}" value="Submit" />
+                    </h:form>
+                </ui:define>
+
+                <ui:define name="bottom">
+                    <ui:insert name="bottom">Hrvoje Oreški &copy; 2014.</ui:insert>
+                </ui:define>
+
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+
+

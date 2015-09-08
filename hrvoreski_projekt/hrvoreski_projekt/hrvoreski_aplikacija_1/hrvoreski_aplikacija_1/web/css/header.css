@@ -1,0 +1,43 @@
+.header{
+    height: 30px;
+    font-size: 20px;
+    background-color: darkblue;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.top{
+    height: 50px;
+    background-color: lightcyan;
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.login{
+    float: right;
+    height: 50px;
+    background-color: lightcyan; 
+    padding-top: 15px;
+    padding-right: 100px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: darkblue;
+}
+.box{
+    height: 50px;
+    background-color: lightblue;
+    padding: 20px;
+    text-decoration: none;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: darkblue;
+}
+
+.box:hover{
+    background-color: beige;
+    color: darkcyan;
+}
+
+    
+

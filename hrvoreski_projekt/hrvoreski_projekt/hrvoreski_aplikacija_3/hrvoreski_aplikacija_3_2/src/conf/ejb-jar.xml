@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.2"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+    <enterprise-beans>
+        <message-driven>
+            <ejb-name>AdreseMessageBean</ejb-name>
+            <ejb-class>org.foi.nwtis.hrvoreski.mb.AdreseMessageBean</ejb-class>
+            <env-entry>
+                <description>korisnickoIme</description>
+                <env-entry-name>korisnickoIme</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>hrvoreski</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <description>lozinka</description>
+                <env-entry-name>lozinka</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>123456</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <description>adresaPosluzitelja</description>
+                <env-entry-name>adresaPosluzitelja</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>localhost</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <description>port</description>
+                <env-entry-name>port</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>3030</env-entry-value>
+            </env-entry>
+        </message-driven>
+    </enterprise-beans>
+</ejb-jar>

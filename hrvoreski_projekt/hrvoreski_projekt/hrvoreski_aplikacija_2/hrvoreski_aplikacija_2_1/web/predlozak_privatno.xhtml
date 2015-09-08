@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <f:view locale="#{lokalizacija.odabraniLocale}">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <h:outputStylesheet name="./css/default.css"/>
+            <h:outputStylesheet name="./css/cssLayout.css"/>
+            <h:outputStylesheet name="./css/osnovna.css" />
+            <title><ui:insert name="naslov">Naslov</ui:insert></title>
+        </h:head>
+
+        <h:body>
+
+            <div id="top">
+                <ui:insert name="top"></ui:insert>
+            </div>
+            <div>
+                <div id="left" >
+                    <h:form>
+                        <ui:insert name="left"></ui:insert>
+                        <c:choose>
+                            <c:when test="#{not empty sessionScope.korisnik}">
+                                <h:outputText class="link" value="#{m.login_username}: "/> 
+                                <h:outputText class="link" value="#{sessionScope.korisnik.korisnik}"/><br/>
+                                <h:commandLink class="link" value="#{m.logout}" action="#{logout.logout()}" /><br/>
+                            </c:when>
+                            <c:when test="#{empty sessionScope.korisnik}">
+                                <h:outputText value="#{m.login_username}: ---" /><br>
+                                    <h:link class="link" value="#{m.index_izborJezika}" outcome="/javni/index"/></br>
+                                <h:link class="link" value="#{m.login_prijava}"  outcome="/javni/login"/><br/>
+                                <h:link class="link" value="#{m.registracija_naslov}"  outcome="/javni/registracija"/><br/>
+                            </c:when>                      
+                        </c:choose><br/>
+                        <h:link class="link" value="#{m.index_naslov}" outcome="/javni/index"/><br/>
+                        <h:link class="link" value="#{m.pregledAktivnihAdresa_naslov}" outcome="/javni/pregledAdresa"/><br/>
+                        <c:choose>
+                            <c:when test="#{not empty sessionScope.korisnik}">
+                                <h:link class="link" value="#{m.pregledPortfolia_naslov}" outcome="/privatni/pregledPortfelja"/><br/>    
+                                <c:choose>
+                                    <c:when test="#{sessionScope.korisnik.uloga eq 1}">
+                                        <h:link class="link" value="#{m.pregledSvihPoruka_naslov}" outcome="/privatni/pregledSvihPoruka"/><br/>   
+                                    </c:when>
+                                </c:choose>    
+                            </c:when>            
+                        </c:choose><br/>
+                        <h:link class="link" value="WAR JavaDoc" outcome="/javadoc/war/index.html"  /><br/>
+                        <h:link class="link" value="EJB JavaDoc" outcome="/javadoc/ejb/index.html" /><br/>
+                        <ui:insert name="left">
+                        </ui:insert>
+
+                    </h:form>
+                </div>
+                <div id="content" class="left_content">
+                    <ui:insert name="content"></ui:insert>
+                </div>
+            </div>
+            <div id="bottom">
+                <ui:insert name="bottom">Hrvoje Oreški &copy; 2014.</ui:insert>
+            </div>
+
+        </h:body>
+
+    </f:view>
+</html>
+

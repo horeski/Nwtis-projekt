@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <body>
+        <ui:composition template="../predlozak_privatno.xhtml">
+            <ui:define name="naslov">
+                #{m.pregledPoruke_naslov}
+            </ui:define>
+            <ui:define name="top">
+                #{m.pregledPoruke_naslov}
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGrid columns="1"  border="1" styleClass="tablica" headerClass="zaglavlje"  rowClasses="parni,neparni">
+                        <!-- Prikaz kontrola, odabir foldera i stranicenje -->
+                        <h:panelGrid columns="2"  border="1" styleClass="tablica" headerClass="zaglavlje"  rowClasses="parni,neparni">
+                            <h:column>
+                                <h:outputText value="#{m.pregledSvihPoruka_mapa}"/>
+                                <h:selectOneMenu value="#{pregledSvihPoruka.odabraniFolder}" >
+                                    <f:selectItems value="#{pregledSvihPoruka.folderi}"/>
+                                </h:selectOneMenu>
+                                <h:commandButton value="#{m.pregledSvihPoruka_odabirMape}" action="#{pregledSvihPoruka.odaberiMapu()}" styleClass="gumb"/>
+                            </h:column>
+                            <h:column>
+                                <!-- u ovisnosti da li je max ili min stranica deaktiviraj gumbe -->
+                                <c:if test="${pregledSvihPoruka.odabranaStranica le 0}">
+                                    <h:commandButton value="#{m.pregledSvihPoruka_prethodnaStr}" disabled="true" action="#{pregledSvihPoruka.oduzmiBrojStranice()}" styleClass="gumb"/>
+                                </c:if>
+                                <c:if test="${pregledSvihPoruka.odabranaStranica gt 0}">
+                                    <h:commandButton value="#{m.pregledSvihPoruka_prethodnaStr}" action="#{pregledSvihPoruka.oduzmiBrojStranice()}" styleClass="gumb"/>
+                                </c:if>
+
+                                <h:outputText value="#{pregledSvihPoruka.odabranaStranica}"/> / <h:outputText value="#{pregledSvihPoruka.maxStranica}"/>
+                                <c:if test="${pregledSvihPoruka.odabranaStranica ge pregledSvihPoruka.maxStranica}">
+                                    <h:commandButton value="#{m.pregledSvihPoruka_sljedecaStr}" disabled="true" action="#{pregledSvihPoruka.dodajBrojStranice()}" styleClass="gumb"/>
+                                </c:if>
+                                <c:if test="${pregledSvihPoruka.odabranaStranica lt pregledSvihPoruka.maxStranica}">
+                                    <h:commandButton value="#{m.pregledSvihPoruka_sljedecaStr}" action="#{pregledSvihPoruka.dodajBrojStranice()}" styleClass="gumb"/>
+                                </c:if>
+                            </h:column>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1"  border="0" styleClass="tablica" headerClass="zaglavlje"  rowClasses="parni,neparni">
+                            <h:dataTable value="#{pregledSvihPoruka.poruke}" var="p" border="1" class="tablica" headerClass="zaglavlje"
+                                         rowClasses="neparni,parni">
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_salje}</f:facet>
+                                    <h:outputText value="#{p.salje}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_predmet}</f:facet>
+                                    <h:outputText value="#{p.predmet}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_vrijeme}</f:facet>
+                                    <h:outputText value="#{p.vrijeme}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy hh:mm:ss"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_vrsta}</f:facet>
+                                    <h:outputText value="#{p.vrsta}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_brojPrivitaka}</f:facet>
+                                    <h:outputText value="#{p.brojPrivitaka}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">#{m.pregledSvihPoruka_pregled}</f:facet>
+                                    <h:commandButton value="#{m.pregledSvihPoruka_pregled}" action="#{pregledSvihPoruka.pregledPoruke()}" styleClass="gumb">
+                                        <f:setPropertyActionListener target="#{pregledSvihPoruka.porukaID}" value="#{p.id}"/>
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+
+                        </h:panelGrid>
+
+                    </h:panelGrid>
+                </h:form>
+                <h:outputText value="#{pregledSvihPoruka.errorMessage}" styleClass="noMessages"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

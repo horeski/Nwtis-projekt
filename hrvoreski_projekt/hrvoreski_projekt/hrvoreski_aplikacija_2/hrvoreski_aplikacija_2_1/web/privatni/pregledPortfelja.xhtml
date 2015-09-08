@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view locale="#{lokalizacija.odabraniLocale}" encoding="UTF-8" contentType="text/html">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <h:outputStylesheet name="./css/default.css" />
+            <h:outputStylesheet name="./css/osnovna.css" />
+            <h:outputStylesheet name="./css/cssLayout.css" />
+            <title>#{m.login_prijava}</title>
+        </h:head>
+        <h:body>
+            <ui:composition template="../predlozak_privatno.xhtml">
+
+                <ui:define name="naslov">
+                    #{m.login_prijava}
+                </ui:define>
+
+                <ui:define name="top">
+                    #{m.login_prijava}
+                </ui:define>
+
+                <ui:define name="left">
+                </ui:define>
+
+                <ui:define name="content">
+                    <h:form id="glavna" >
+                        <h:panelGrid columns="1" style="width: 812px;background-color: #036fab">
+                            <h:outputLabel value="#{m.pregledPortfelji}" style="font-weight: 700; color: white; font-size: 18px"/><br/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" style="width: 812px">
+                            <h:panelGroup layout="block" >
+                                <h:outputLabel value="#{m.pregledPortfeljiNaziv}"/><br/>
+                                <h:inputText id="noviPortfelj" value="#{pregledPortfelja.noviPortfelj}"/>
+                                <h:commandButton value="#{m.pregledPortfeljiDodaj}" action="#{pregledPortfelja.dodajPortfelj()}" class="gumb">    
+                                     <f:ajax execute="noviPortfelj" render="noviPortfelj popisPortfelj" />
+                                </h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" style="height: 120px">
+                                <h:selectOneListbox id="popisPortfelj" size="7" value="#{pregledPortfelja.odabraniMeteoPortfelj}" style="width: 250px">
+                                    <f:selectItems value="#{pregledPortfelja.portfelja}"/>
+                                </h:selectOneListbox>
+                            </h:panelGroup>                
+                        </h:panelGrid>
+                        
+                        <h:panelGrid columns="1" style="width: 812px; background-color: #ece3a5; height: 30px">
+                            <h:panelGroup layout="block" style="padding-left: 405px">
+                                <h:commandButton  value="#{m.pregledPortfeljiOtvori}" action="#{pregledPortfelja.dohvatiAdresePortfelja()}" class="gumb">
+                                     <f:ajax execute="popisPortfelj" render="popisPortfelj portfeljiMapa" />
+                                </h:commandButton> 
+                            </h:panelGroup>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="1" style="width: 812px;background-color: #036fab">
+                            <h:outputLabel value="#{m.pregledPortfeljiUredi}" style="font-weight: 700; color: white; font-size: 18px"/><br/>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="background-color: #ece3a5; height: 30px">
+                            <h:panelGroup layout="block" style="width: 400px">
+                                <h:outputLabel value="#{m.pregledPortfeljiAdrese}" style="font-size: 15px" /><br/>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" style="width: 400px">
+                                <h:outputLabel value="#{m.pregledPortfeljiAdreseP}" style="font-size: 15px"/><br/>
+                            </h:panelGroup>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2">
+                            <h:panelGroup layout="block" style="width: 400px; margin-top: 20px">
+                                <h:selectManyListbox size="10" id="adreseMapa" value="#{pregledPortfelja.adreseMapaOdabrano}" style="width: 250px">
+                                    <f:selectItems value="#{pregledPortfelja.adreseMapa}" />
+                                </h:selectManyListbox>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" style="width: 400px; margin-top: 20px">
+                                <h:selectManyListbox size="10" id="portfeljiMapa" value="#{pregledPortfelja.portfeljiMapaOdabrano}" style="width: 250px">
+                                    <f:selectItems value="#{pregledPortfelja.portfeljiMapa}" />
+                                </h:selectManyListbox>
+                            </h:panelGroup>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3" style="background-color: #ece3a5; height: 40px">
+                            <h:panelGroup layout="block" style="width: 400px">
+                                <h:commandButton value="#{m.pregledPortfeljiAdreseDodaj}" class="gumb" action="#{pregledPortfelja.dodajAdresu()}">
+                                     <f:ajax execute="adreseMapa" render="adreseMapa portfeljiMapa" />
+                                </h:commandButton>
+                                <h:commandButton value="#{m.pregledPortfeljiOsvjezi}" class="gumb" action="#{pregledPortfelja.osvjezi()}">
+                                    <f:ajax execute="adreseMapa" render="adreseMapa"/>
+                                </h:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup layout="block" style="width: 400px">
+                                <h:commandButton value="#{m.pregledPortfeljiAdreseObrisi}" class="gumb" action="#{pregledPortfelja.obrisiAdresu()}">
+                                     <f:ajax execute="portfeljiMapa" render="portfeljiMapa adreseMapa" />
+                                </h:commandButton>
+                                <h:commandButton value="#{m.pregledPortfeljiMeteo}" class="gumb" action="#{pregledPortfelja.dajMeteoPodatkeZaPortfelj()}">
+
+                                </h:commandButton>
+                            </h:panelGroup>
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="2" style="margin-top: 20px">
+                            <h:panelGroup layout="block" style="width: 400px; margin-top: 20px">
+                                <h:outputLabel value="#{m.pregledPortfeljiAdresaNova}"/><br/>
+                                <h:inputText id="novaAdresa" value="#{pregledPortfelja.novaAdresa}" />
+                                <h:commandButton value="#{m.pregledPortfeljiAdresaNovaGumb}" class="gumb" action="#{pregledPortfelja.saljiAdresu()}" >    
+                                     <f:ajax execute="novaAdresa" render="novaAdresa" />
+                                </h:commandButton>
+                            </h:panelGroup>                          
+                        </h:panelGrid>
+                        
+                        <h:panelGroup id="meteoBlok" layout="block" class="blok" style="visibility: #{pregledPortfelja.meteoBlok}">
+                            <h:dataTable id="tablica" class="tablica" value="#{pregledPortfelja.meteoPrikaz}" var="s"
+                                         headerClass="zaglavlje" rowClasses="parni, neparni">
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiT} </f:facet>
+                                    #{s.temperature}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiV} </f:facet>
+                                    #{s.humidity}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiTl} </f:facet>
+                                    #{s.pressureSeaLevel}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiVJ} </f:facet>
+                                    #{s.windSpeed}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiK} </f:facet>
+                                    #{s.rainRate}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"> #{m.pregledAdresaZadnjiS}</f:facet>
+                                    #{s.snowRate}
+                                </h:column>                                                             
+                            </h:dataTable>
+                            <h:commandButton value="OK" class="gumb" action="#{pregledPortfelja.dajSeMakni()}">                             
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:form>
+                </ui:define>
+                <ui:define name="bottom">
+                    <ui:insert name="bottom">Hrvoje Oreški &copy; 2014.</ui:insert>
+                </ui:define>
+            </ui:composition>
+        </h:body>
+    </f:view>
+</html>
+

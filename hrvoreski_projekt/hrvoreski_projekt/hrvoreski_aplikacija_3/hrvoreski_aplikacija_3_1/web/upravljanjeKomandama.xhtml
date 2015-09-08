@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Komande</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./predlozak.xhtml">
+
+            <ui:define name="top">
+                Upravljanje komandama 
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+            <ui:define name="content">
+
+                    <h:form id="forma">
+                        <h:panelGrid id="grid" columns="3">
+                            <h:outputLabel for="input" value="Komanda: " style="font-weight: bold; font-size: 13px"/>
+                            <h:inputText id="input" value="#{upravljanjeKomandama.input}" style="width: 750px;"/>
+                            <h:commandButton value=" Šalji " action="#{upravljanjeKomandama.saljiKrozSocket()}" >
+                            </h:commandButton>                    
+                            <h:outputLabel for="output" value="Odgovor: " style="font-weight: bold; font-size: 13px"/>
+                            <h:inputText id="output" value="#{upravljanjeKomandama.output}" style="width: 750px;"/>
+                        </h:panelGrid>
+                    </h:form>
+            </ui:define>
+
+
+        </ui:composition>
+    </h:body>
+</html>
+
